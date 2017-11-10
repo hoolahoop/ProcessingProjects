@@ -4,7 +4,7 @@ class Block{
   float xSize;
   float ySize;
   int strength;
-  int powerUp;
+  int initialStrength;
   int blockColor;
   
   Block(){
@@ -13,7 +13,7 @@ class Block{
     xSize = 100;
     ySize = 30;
     strength = 5;
-    powerUp = 0;
+    initialStrength = strength;
     blockColor = 255;
   }
   

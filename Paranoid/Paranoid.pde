@@ -3,6 +3,8 @@ Ball ball;
 int ballCount;
 Block[] blocks = new Block[5];
 int testCount = 0;
+PowerUp[] powerUps = new PowerUp[5];
+int powerUpType = 0;
 
 void settings(){
   size(1500, 1000);
@@ -17,6 +19,9 @@ void setup(){
      blocks[i].x = width/blocks.length*(i + 1) - blocks[i].xSize*2 + blocks[i].xSize/2;
      blocks[i].y = 200;
    }
+   for(int i = 0; i < powerUps.length; i++){
+     powerUps[i] = new PowerUp();
+   }
 }
 
 void draw(){
@@ -25,16 +30,26 @@ void draw(){
   paddle.show();
   
   for(int i = 0; i < blocks.length; i++){
-     blocks[i].update();
-     blocks[i].show();
-   }
+    blocks[i].update();
+    blocks[i].show();
+  }
   
   if(ball.y > 850){
-  ball.hitPaddle(
-    paddle.x - paddle.xsize / 2, 
-    paddle.x + paddle.xsize / 2, 
-    paddle.y - paddle.ysize / 2, 
-    paddle.y + paddle.ysize / 2);
+    ball.hitPaddle(
+      paddle.x - paddle.xsize / 2, 
+      paddle.x + paddle.xsize / 2, 
+      paddle.y - paddle.ysize / 2, 
+      paddle.y + paddle.ysize / 2);
+  }
+  
+  for(int i = 0; i < powerUps.length; i++){
+    if(powerUps[i].powerType != 0){
+      powerUpType = powerUps[i].hitPaddle(
+        paddle.x - paddle.xsize / 2, 
+        paddle.x + paddle.xsize / 2, 
+        paddle.y - paddle.ysize / 2, 
+        paddle.y + paddle.ysize / 2);
+    }
   }
   
   if(ball.y < 300){
@@ -49,12 +64,21 @@ void draw(){
           i);
       }
       if(hitBlock != -1){
-        println(hitBlock + " " + blocks[hitBlock].strength);
+        if(blocks[hitBlock].strength == blocks[hitBlock].initialStrength){
+          powerUps[hitBlock].start(blocks[hitBlock].x, blocks[hitBlock].y);
+        }
         blocks[hitBlock].strength--;
-        println(blocks[hitBlock].strength);
       }
     }
   }
+  if(ball.x < 50 || ball.x > width-50 || ball.y < 50){
+    ball.hitSide();
+  }
+  
+  for(int i = 0; i < powerUps.length; i++){
+     powerUps[i].update();
+     powerUps[i].show();
+   }
   
   ball.update();
   ball.show();
