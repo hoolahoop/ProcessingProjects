@@ -44,11 +44,9 @@ void draw(){
   
   for(int i = 0; i < powerUps.length; i++){
     if(powerUps[i].powerType != 0){
-      powerUpType = powerUps[i].hitPaddle(
-        paddle.x - paddle.xsize / 2, 
-        paddle.x + paddle.xsize / 2, 
-        paddle.y - paddle.ysize / 2, 
-        paddle.y + paddle.ysize / 2);
+      if(powerUps[i].hitPaddle(paddle.x - paddle.xsize / 2, paddle.x + paddle.xsize / 2, paddle.y - paddle.ysize / 2, paddle.y + paddle.ysize / 2)){
+        powerUps[i].powerUp();
+      }
     }
   }
   
