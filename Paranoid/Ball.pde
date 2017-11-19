@@ -5,6 +5,12 @@ class Ball{
   float my;
   float ballSpeed;
   float ballSize;
+  int strength;
+  int previousStrength;
+  int colorRed;
+  int colorGreen;
+  int colorBlue;
+  int poweredUp;
   
   Ball(){
     mx = 1;
@@ -13,6 +19,11 @@ class Ball{
     x = width/2;
     y = height - 200;
     ballSpeed = 5;
+    strength = 1;
+    previousStrength = 1;
+    colorRed = 255;
+    colorGreen = 255;
+    colorBlue = 255;
   }
   
   void update(){
@@ -21,7 +32,7 @@ class Ball{
   }
   
   void show(){
-    fill(255);
+    fill(colorRed, colorGreen, colorBlue);
     rect(x - ballSize / 2, y - ballSize / 2, ballSize, ballSize, ballSize / 2);
   }
   

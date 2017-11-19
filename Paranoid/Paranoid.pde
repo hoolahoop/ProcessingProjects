@@ -45,7 +45,7 @@ void draw(){
   for(int i = 0; i < powerUps.length; i++){
     if(powerUps[i].powerType != 0){
       if(powerUps[i].hitPaddle(paddle.x - paddle.xsize / 2, paddle.x + paddle.xsize / 2, paddle.y - paddle.ysize / 2, paddle.y + paddle.ysize / 2)){
-        powerUps[i].powerUp();
+        powerUps[i].powerUp(ball, paddle);
       }
     }
   }
@@ -65,7 +65,7 @@ void draw(){
         if(blocks[hitBlock].strength == blocks[hitBlock].initialStrength){
           powerUps[hitBlock].start(blocks[hitBlock].x, blocks[hitBlock].y);
         }
-        blocks[hitBlock].strength--;
+        blocks[hitBlock].strength -= ball.strength;
       }
     }
   }

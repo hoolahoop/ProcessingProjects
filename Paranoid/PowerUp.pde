@@ -144,7 +144,83 @@ class PowerUp{
     return false;
   }
   
-  void powerUp(){
-    
+  void powerUp(Ball ball, Paddle paddle){
+    switch(powerType){
+      case 1:
+        ball.previousStrength = ball.strength;
+        ball.strength = 100;
+        ball.colorRed = 255;
+        ball.colorGreen = ball.colorBlue = 0;
+        break;
+      case 2:
+        paddle.xsize += 50;
+        break;
+      case 3:
+        break;
+      case 4:
+        ball.my *= 0.5;
+        break;
+      case 5:
+        break;
+      case 6:
+        ball.strength += 1;
+        break;
+      case 7:
+        if(paddle.xsize > 50){
+          paddle.xsize -= 50;
+        }
+        break;
+      case 8:
+        paddle.paddleSpeed += 5;
+        break;
+      case 9:
+        paddle.paddleSpeed *= 0.5;
+        break;
+      case 10:
+        if(ball.strength > 0){
+          ball.strength -= 1;
+        }
+        break;
+      case 11:
+        ball.my *= 2;
+        break;
+      case 12:
+        //aoe bomb
+        break;
+      default:
+        break;
+    }
   }
+  
+  void powerDown(){
+    switch(powerType){
+      case 1:
+        break;
+      case 2:
+        break;
+      case 3:
+        break;
+      case 4:
+        break;
+      case 5:
+        break;
+      case 6:
+        break;
+      case 7:
+        break;
+      case 8:
+        break;
+      case 9:
+        break;
+      case 10:
+        break;
+      case 11:
+        break;
+      case 12:
+        break;
+      default:
+        break;
+    }
+  }
+  
 }
